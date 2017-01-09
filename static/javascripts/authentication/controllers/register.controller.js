@@ -7,7 +7,7 @@
 
     angular
         .module('thinkster.authentication.controllers')
-        .controller('RegisterController, RegisterController);
+        .controller('RegisterController', RegisterController);
 
     RegisterController.$inject = ['$location', '$scope', 'Authentication'];
 
@@ -25,6 +25,7 @@
          * @memberOf thinkster.authentication.controllers.RegisterController
          */
         function register() {
+            console.log('test');
             Authentication.register(vm.email, vm.password, vm.username);
         }
     }

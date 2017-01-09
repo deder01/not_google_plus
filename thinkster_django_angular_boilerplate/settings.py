@@ -117,3 +117,21 @@ ALLOWED_HOSTS = ['*']
 
 # Point user model away from default and to our custom model
 AUTH_USER_MODEL = 'authentication.Account'
+
+# Debugging 500 status errors
+LOGGING = {
+        'version': 1,
+        'handlers': {
+            'console':{
+                'level':'DEBUG',
+                'class':'logging.StreamHandler',
+            },
+        },
+        'loggers': {
+            'django.request': {
+                'handlers':['console'],
+                'propagate':True,
+                'level':'DEBUG',
+            }
+        },
+}

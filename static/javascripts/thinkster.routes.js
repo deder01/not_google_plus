@@ -5,7 +5,7 @@
         .module('thinkster.routes')
         .config(config);
 
-    config.$inject = ['routeProvider'];
+    config.$inject = ['$routeProvider'];
 
     /**
      * @name config
