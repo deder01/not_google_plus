@@ -23,7 +23,12 @@
          * @desc The Factory to be returned
          */
         var Authentication = {
-            register: register
+            getAuthenticatedAccount: getAuthenticatedAccount,
+            isAuthenticated: isAuthenticated,
+            register: register,
+            login: login,
+            setAuthenticatedAccount: setAuthenticatedAccount,
+            unauthenticate: unauthenticate,
         };
 
         return Authentication
@@ -44,7 +49,54 @@
             username: username,
             password: password,
             email: email
-        });
+        }).then(registerSuccessFn, registerErrorFn);
+
+        function registerSuccessFn(data, status, headers, config) {
+            Authentication.setAuthenticatedAccount(data.data);
+
+            window.location = '/';
+        }
+
+        function registerErrorFn(data, status, headers, config) {
+            console.error('Epic fail :(');
+        }
+    }
+
+    function login(email, password) {
+        return $http.post('api/v1/auth/login/', {
+            email: email, password: password
+        }).then(loginSuccessFn, loginErrorFn);
+    
+
+        function loginSuccessFn(data, status, headers, config) {
+            Authentication.setAuthenticatedAccount(data.data);
+
+            window.location = '/';
+        }
+
+        function loginErrorFn(data, status, headers, config) {
+            console.error('Epic fail :(');
+        }
+    }
+
+    function getAuthenticatedAccount() {
+        if (!$cookies.authenticatedAccount) {
+            return;
+        }
+
+        return JSON.parse($cookies.authenticatedAccount);
+    }
+
+    function isAuthenticated() {
+        return !!$cookies.authenticatedAccount;
+    }
+
+    function setAuthenticatedAccount(account) {
+        $cookies.authenticatedAccount = JSON.stringify(account);
+    }
+
+    function unauthenticate() {
+        delete $cookies.authenticatedAccount;
     }
   }
 })();

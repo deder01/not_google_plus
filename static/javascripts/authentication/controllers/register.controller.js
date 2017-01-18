@@ -19,13 +19,21 @@
 
         vm.register = register;
 
+        activate();
+
+        function activate() {
+            // If the user is authenticated they should not be here
+            if (Authentication.isAuthenticated()) {
+                $location.url('/');
+            }
+        }
+
         /**
          * @name register
          * @desc register a new user
          * @memberOf thinkster.authentication.controllers.RegisterController
          */
         function register() {
-            console.log('test');
             Authentication.register(vm.email, vm.password, vm.username);
         }
     }
