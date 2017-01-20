@@ -1,4 +1,5 @@
 # Imports
+import sys
 from django.conf.urls import patterns, url, include
 
 from thinkster_django_angular_boilerplate.views import IndexView
@@ -6,7 +7,7 @@ from thinkster_django_angular_boilerplate.views import IndexView
 from rest_framework_nested import routers
 
 from authentication.views import AccountViewSet, LoginView, LogoutView
-from authentication.views import AccountPostViewSet, PostViewSet
+from posts.views import AccountPostsViewSet, PostViewSet
 
 router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
@@ -29,3 +30,4 @@ urlpatterns = patterns(
 
     url('^.*$', IndexView.as_view(), name='index'),
 )
+

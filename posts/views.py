@@ -1,9 +1,9 @@
-from rest_framework import permissions, viewsets, status, views
+from rest_framework import permissions, viewsets
 from rest_framework.response import Response
 
-from authentication.models import Account
-from authentication.permissions import IsAccountOwner
-from authentication.serializers import AccountSerializer
+from posts.models import Post
+from posts.permissions import IsAuthorOfPost
+from posts.serializers import PostSerializer
 
 import json
 
@@ -26,7 +26,7 @@ def perform_create(self, serializer):
     return super(PostViewSet, self).perform_create(serlializer)
 
 class AccountPostsViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all.select_related('author').all()
+    queryset = Post.objects.select_related('author').all()
     serializer_class = PostSerializer 
 
     def list(self, request, account_username=None):
