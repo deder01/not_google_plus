@@ -39,11 +39,11 @@
             return scores.indexOf(Math.min.apply(this, scores));
 
             function columnMapFn(column) {
-                var lengths = columns.map(function (element) {
+                var lengths = column.map(function (element) {
                     return element.content.length;
                 });
 
-                return lengths.reduce(sum, 0) * columns.length;
+                return lengths.reduce(sum, 0) * column.length;
             }
 
             function sum(m, n) {
@@ -55,7 +55,7 @@
             if (current !== original) {
                 vm.columns = [];
 
-                for (var i=0; i<calculateNumberofColumns(); ++i) {
+                for (var i=0; i<calculateNumberOfColumns(); ++i) {
                     vm.columns.push([]);
                 }
 

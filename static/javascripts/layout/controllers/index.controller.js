@@ -13,6 +13,8 @@
         vm.isAuthenticated = Authentication.isAuthenticated;
         vm.posts = [];
 
+        activate();
+
         function activate() {
             Posts.all().then(postsSuccessFn, postsErrorFn); 
             
@@ -24,11 +26,11 @@
                 vm.posts.shift();
             });
 
-            function postSuccessFun(data, status, headers, config) {
+            function postsSuccessFn(data, status, headers, config) {
                 vm.posts = data.data;
             }
 
-            function postErrorFun(data, status, headers, config) {
+            function postsErrorFn(data, status, headers, config) {
                 Snackbar.error(data.error);
             }
         }
