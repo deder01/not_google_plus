@@ -8,6 +8,7 @@ from posts.serializers import PostSerializer
 import json
 
 from django.contrib.auth import authenticate, login, logout
+import sys
 
 
 class PostViewSet(viewsets.ModelViewSet):
