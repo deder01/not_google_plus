@@ -19,7 +19,7 @@
             Posts.all().then(postsSuccessFn, postsErrorFn); 
             
             $scope.$on('post.created', function(event, post) {
-                vm.posts.unshift(posts);
+                vm.posts.unshift(post);
             });
 
             $scope.$on('post.created.error', function () {
