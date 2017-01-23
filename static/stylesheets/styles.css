@@ -1,3 +1,9 @@
+.btn-add-new-post {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
 .no-posts-here {
   text-align: center;
 }
@@ -14,8 +20,13 @@
   text-decoration: none;
 }
 
-.btn-add-new-post {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+.profile {}
+
+.profile .profile__header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.profile .profile__username {
+    font-weight: bold;
 }
