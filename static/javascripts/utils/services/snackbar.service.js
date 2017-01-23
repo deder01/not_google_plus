@@ -28,4 +28,5 @@
         function show(content, options) {
             _snackbar(content, options);
         }
+    }
 })($, _);

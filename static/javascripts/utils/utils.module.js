@@ -1,8 +1,8 @@
 (function () {
     angular
-        .module('thinkster.utils.module', [
+        .module('thinkster.utils', [
                 'thinkster.utils.services'
         ]);
 
-    angular.module('thinkster.utils.servies', []);
+    angular.module('thinkster.utils.services', []);
 })()
