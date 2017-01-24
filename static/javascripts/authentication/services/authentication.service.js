@@ -10,14 +10,14 @@
         .module('thinkster.authentication.services')
         .factory('Authentication', Authentication);
 
-    Authentication.$inject = ['$cookies', '$http'];
+    Authentication.$inject = ['$cookies', '$http', 'Snackbar'];
 
 
     /**
      * @namespace Authentication
      * @returns {Factor}
      */
-    function Authentication($cookies, $http) {
+    function Authentication($cookies, $http, Snackbar) {
         /**
          * @name Authentication
          * @desc The Factory to be returned
@@ -53,13 +53,11 @@
         }).then(registerSuccessFn, registerErrorFn);
 
         function registerSuccessFn(data, status, headers, config) {
-            Authentication.setAuthenticatedAccount(data.data);
-
-            window.location = '/';
+            Authentication.login(email, password);
         }
 
         function registerErrorFn(data, status, headers, config) {
-            console.error('Epic register fail :(');
+            Snackbar.error(data.data.message);
         }
     }
 
@@ -76,7 +74,7 @@
         }
 
         function loginErrorFn(data, status, headers, config) {
-            console.error('Epic fail login :(');
+            Snackbar.error(data.data.message);
         }
     }
 
@@ -91,7 +89,7 @@
         }
 
         function logoutErrorFn(data, status, headers, config) {
-            console.error('Epic logout fail :(');
+            Snackbar.error('Epic logout fail :(');
         } 
     }
 

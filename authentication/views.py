@@ -27,6 +27,21 @@ class AccountViewSet(viewsets.ModelViewSet):
 
     # override create because the default simply stores the password in plain text
     def create(self, request):
+        data = json.loads(request.body)
+        email = data.get('email', None)
+        username = data.get('username', None)
+        if Account.objects.filter(email=email):
+            return Response({
+                'status': 'Bad request',
+                'message': email + ' is already registered.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        if Account.objects.filter(username=username):
+            return Response({
+                'status': 'Bad request',
+                'message': 'Username ' + username + ' is already taken. Please pick a different one.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
         serializer = self.serializer_class(data=request.data)
 
         if serializer.is_valid():
@@ -64,7 +79,7 @@ class LoginView(views.APIView):
         else:
             return Response({
                 'status': 'Unauthorized',
-                'message': 'Username/password combination invlaid'
+                'message': 'Username/password combination invalid'
             }, status=status.HTTP_401_UNAUTHORIZED)
 
 
