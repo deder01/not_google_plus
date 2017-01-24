@@ -12,7 +12,7 @@ import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "thinkster_django_angular_boilerplate.settings")
 
 from django.core.wsgi import get_wsgi_application
-from whitenoise.django import DjangoWhiteNoise
+from whitenoise.django import Cling
 
 application = get_wsgi_application()
-application = DjangoWhiteNoise(application)
+application = Cling(get_wsgi_application())
