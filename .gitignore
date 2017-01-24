@@ -7,9 +7,6 @@
 # Node modules
 node_modules/
 
-# Uglified JavaScript
-dist/
-
 # Staticfiles
 staticfiles/
 
