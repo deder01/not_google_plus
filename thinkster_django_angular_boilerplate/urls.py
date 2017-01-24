@@ -30,4 +30,4 @@ urlpatterns = patterns(
 from <app> import settings
 urlpatterns += patterns('',
         (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
-)
+    )
