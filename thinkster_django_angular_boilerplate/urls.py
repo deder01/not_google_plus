@@ -25,3 +25,9 @@ urlpatterns = patterns(
 
     url(r'^.*$', IndexView.as_view(), name='index'),
 )
+
+
+from <app> import settings
+urlpatterns += patterns('',
+        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+)
