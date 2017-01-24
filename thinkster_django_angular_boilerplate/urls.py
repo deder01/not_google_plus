@@ -27,7 +27,7 @@ urlpatterns = patterns(
 )
 
 
-from <app> import settings
+from thinkster_django_angular_boilerplate import settings
 urlpatterns += patterns('',
         (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
     )
